@@ -8,7 +8,7 @@
 
 ### Instalación - Despliegue
 
- 	$ bundler install
+ 	$ bundler install && bower install
 
 ### Para arrancar la aplicación:
 
