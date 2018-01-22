@@ -41,8 +41,4 @@ class App < Sinatra::Base
   get '/' do
     'Error: Url Vacía'
   end
-
-  get '/home' do
-    erb :'home/index', :layout => :'layouts/blank', :locals => { :tiempo => Time.now }
-  end
 end
