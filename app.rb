@@ -1,7 +1,9 @@
 require 'sinatra/base'
 require 'json'
+require_relative 'config/constants'
 require_relative 'config/routes'
 require_relative 'config/models'
+require_relative 'config/helpers'
 
 class App < Sinatra::Base
   enable :method_override

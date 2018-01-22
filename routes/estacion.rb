@@ -3,13 +3,12 @@ class App < Sinatra::Base
     Estacion.all.to_a.to_json
   end
 
-  get '/estacion/xd' do
-    MDB.insert({
-      'first_name' => 'Joan',
-      'last_name' => 'Of Arc',
-      'age' => 15,
-      'armor_size' => 'small'
-    })
-    'hola'
+  get '/estaciones' do
+    data = {
+      :tiempo => Time.now,
+      :array_css => ['estacion/index'],
+      :array_js => ['estacion/index']
+    }
+    erb :'estacion/index', :layout => :'layouts/blank', :locals => data
   end
 end
