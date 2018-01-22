@@ -1,0 +1,5 @@
+Estación Molina 1::Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula::-12.084784::-76.946172::240::5::1
+Estación Molina 2::Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus::-12.085529::-76.946805::240.5::5::2
+Estación Molina 2::Tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. ::-12.086347::-76.945442::239.9::5::1
+Estación Huancayo 1::Aenean imperdiet. Etiam::-12.073265::-75.193691::3276.4::129::1
+Estación Huancayo 2::Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, ::-12.077294::-75.191631::3267.2::129::2

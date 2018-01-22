@@ -22,7 +22,34 @@ Thanks/Credits
 
 Servicio web desarrollado en Ruby usando el framework Sinatra, con base de datos SQLite3 y MongoLiteDB en la persistencia de datos.
 
-### SERVICIOS
+### Migraciones
+
+Ejecutar migración
+
+  $ sequel -m path/to/migrations postgres://host/database
+  $ sequel -m path/to/migrations sqlite://db/estaciones.db
+
+Ejecutar el 'down' de las migraciones de la última a la primera:
+
+  $ sequel -m db/migrations -M 0 sqlite://db/estaciones.db
+
+Ejecutar el 'up' de las migraciones hasta un versión especifica:
+
+  $ sequel -m db/migrations -M #version sqlite://db/estaciones.db
+
+Tipos de Datos de Columnas
+
+  + :string=>String
+  + :integer=>Integer
+  + :date=>Date
+  + :datetime=>[Time, DateTime].freeze,
+  + :time=>Sequel::SQLTime,
+  + :boolean=>[TrueClass, FalseClass].freeze,
+  + :float=>Float
+  + :decimal=>BigDecimal
+  + :blob=>Sequel::SQL::Blob
+
+### Rutas
 
 + (1) POST : usuario/correo_repetido?correo=@correo
 + (2) POST : usuario/usuario_repetido?correo=@usuario
@@ -42,7 +69,7 @@ Servicio web desarrollado en Ruby usando el framework Sinatra, con base de datos
 + (16) POST : distrito/editar?id=@id&nombre=@nombre
 + (17) POST : distrito/eliminar?id=@id
 
-### PREGUNTAS
+### Preguntas
 
 1) Si "Acepto los Términos y Condiciones" está checkado, los campos y el botón del Formulario de Registro deberá estar habilitado, caso contrario estarán desabilitados.
 2) Cada vez que precione una tecla al escribir el Correo, se deberá llamar al servicio (1), el cuál validará que el correo no se encuentre en uso. En caso que el servicio web diga que el correo ya se encuentra en uso, se deberá mostrar un mensaje en el formulario diciendo que el correo ingresado ya se encuentra en uso. Una vez corregido el error, el mensaje deberá borrarse.

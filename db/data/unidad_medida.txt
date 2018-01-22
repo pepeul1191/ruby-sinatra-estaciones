@@ -1,0 +1,2 @@
+Grados Celsius::°C
+Masa::Kg
