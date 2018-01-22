@@ -11,10 +11,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="<%=CONSTANTS[:STATIC_URL]%>bower_components/bootstrap/dist/css/bootstrap.min.css" rel='stylesheet'>
   <link href="<%=CONSTANTS[:STATIC_URL]%>bower_components/font-awesome/css/font-awesome.min.css" rel='stylesheet'>
+  <link href="<%=CONSTANTS[:STATIC_URL]%>site.css" rel='stylesheet'>
   <%= css(array_css) %>
+  <script type="text/javascript">
+    var BASE_URL = '<%= CONSTANTS[:BASE_URL] %>';
+    var STATICS_URL  = '<%= CONSTANTS[:STATIC_URL] %>';
+  </script>
   <title>Sinatra Template</title>
 </head>
-<body>
+<body class="conatiner">
   <h1>Header</h1>
   <div id='container'>
     <%= yield %>
