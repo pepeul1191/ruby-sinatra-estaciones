@@ -19,3 +19,4 @@ table select{width: 220px; background-color: transparent; border: 0px solid #ccc
 @media (min-width: 768px){
   .navbar-nav>li>a { padding-top: 10px; padding-bottom: 10px;}
 }
+.footer-bottom{background: #282828; color: #FDFDFD; padding-top: 10px; padding-bottom: 10px}
