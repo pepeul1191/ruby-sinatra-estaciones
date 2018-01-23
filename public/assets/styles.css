@@ -16,3 +16,6 @@ td>i{margin-left: 10px}
 .navbar-toggle{padding: 8px 8px; margin-right: 10px; margin-top: 5px;}
 .navbar-default .navbar-collapse{border: 0px; background: #FDFDFD; border-bottom: 1px solid #e7e7e7;}
 table select{width: 220px; background-color: transparent; border: 0px solid #cccccc; margin-bottom: 0px; top:10px; height: 17px; padding: 0px 0px;}
+@media (min-width: 768px){
+  .navbar-nav>li>a { padding-top: 10px; padding-bottom: 10px;}
+}
