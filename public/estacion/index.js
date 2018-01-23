@@ -57,29 +57,29 @@ $(document).ready(function() {
 $(document).on('click', '#btnAgregarEstacion', function(event) {
 	var id_boton = $(event.currentTarget).attr('id');
   var tipo_estaciones = getTipoEstacion();
-  var fila = '<tr><td class="oculto"><label></label></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td>' + helperSelectTipoEstacion(tipo_estaciones, 99999) + '</td><td><i class="fa fa-plus" aria-hidden="true" operacion="crearEstacion"></i><i class="fa fa-times" aria-hidden="true" operacion="eliminarFila"></i></td></tr>';
+  var fila = '<tr><td class="oculto">E</td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td>' + helperSelectTipoEstacion(tipo_estaciones, 99999) + '</td><td><i class="fa fa-plus" aria-hidden="true" operacion="crearEstacion"></i><i class="fa fa-times" aria-hidden="true" operacion="eliminarEstacion"></i></td></tr>';
   $('#tablaEstaciones tbody').append(fila);
 });
 
 $(document).on('click', '.fa', function(event) {
-  /*
-  	var operacion = $(event.currentTarget).attr('operacion');
-  	switch(operacion) {
-  		//Inicio tabla departamento
-	    case 'cargarProvincia':
-	   		var departamentoId = $(event.currentTarget).parent().parent().children().eq(0).html();
-	   		cargarProvincia(departamentoId);
-			break;
-		case 'crearDepartamento':
-			var departamentoNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
-	   		var fila = $(event.currentTarget).parent().parent();
-	   		crearDepartamento(departamentoNombre, fila);
-			break;
-	    case 'eliminarDepartamento':
-	    	var departamentoId = $(event.currentTarget).parent().parent().children().eq(0).html();
-	    	var fila = $(event.currentTarget).parent().parent();
-	    	eliminarDepartamento(departamentoId, fila);
-			break;
+  var operacion = $(event.currentTarget).attr('operacion');
+  switch(operacion) {
+    //Inicio tabla departamento
+    case 'cargarProvincia':
+      var departamentoId = $(event.currentTarget).parent().parent().children().eq(0).html();
+      cargarProvincia(departamentoId);
+      break;
+    case 'crearDepartamento':
+      var departamentoNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
+      var fila = $(event.currentTarget).parent().parent();
+      crearDepartamento(departamentoNombre, fila);
+      break;
+    case 'eliminarEstacion':
+      var estacionId = $(event.currentTarget).parent().parent().children().eq(0).html();
+      var fila = $(event.currentTarget).parent().parent();
+      eliminarEstacion(estacionId, fila);
+    break;
+    /*
 		case 'editarDepartamento':
 			var departamentoId = $(event.currentTarget).parent().parent().children().eq(0).html();
 	    	var departamentoNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
@@ -128,7 +128,40 @@ $(document).on('click', '.fa', function(event) {
 			var fila = $(event.currentTarget).parent().parent();
 	    	fila.remove();
 			break;
-	    default:
-	       alert('Operacion ' + operacion + ' no implementada');
-  */
+    */
+  default:
+    alert('Operacion ' + operacion + ' no implementada');
+  }
 });
+
+function eliminarEstacion(estacionId, fila){
+  console.log(estacionId);
+  if (estacionId == 'E'){
+    fila.remove();
+  }else{
+    var estacion = new Object();
+    estacion.id = estacionId;
+    /*
+    $.ajax({
+      url: BASE_URL + 'distrito/eliminar',
+      type: "POST",
+      async: false,
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data : JSON.stringify(distrito),
+      success: function(data) {
+        var rpta = data;
+        $('#distritosMensaje').html(rpta['mensaje']);
+        if(rpta['tipo_mensaje']=='error'){
+          $('#distritosMensaje').removeClass('success');
+          $('#distritosMensaje').addClass('error');
+        }else{
+          $('#distritosMensaje').removeClass('error');
+          $('#distritosMensaje').addClass('success');
+        }
+        fila.remove();
+      }
+    });
+    */
+  }
+}
