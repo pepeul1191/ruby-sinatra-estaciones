@@ -135,33 +135,30 @@ $(document).on('click', '.fa', function(event) {
 });
 
 function eliminarEstacion(estacionId, fila){
-  console.log(estacionId);
   if (estacionId == 'E'){
     fila.remove();
   }else{
     var estacion = new Object();
     estacion.id = estacionId;
-    /*
     $.ajax({
-      url: BASE_URL + 'distrito/eliminar',
+      url: BASE_URL + 'estacion/eliminar',
       type: "POST",
       async: false,
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
-      data : JSON.stringify(distrito),
+      data : JSON.stringify(estacion),
       success: function(data) {
         var rpta = data;
-        $('#distritosMensaje').html(rpta['mensaje']);
+        $('#mensaje').html(rpta['mensaje']);
         if(rpta['tipo_mensaje']=='error'){
-          $('#distritosMensaje').removeClass('success');
-          $('#distritosMensaje').addClass('error');
+          $('#mensaje').removeClass('success');
+          $('#mensaje').addClass('error');
         }else{
-          $('#distritosMensaje').removeClass('error');
-          $('#distritosMensaje').addClass('success');
+          $('#mensaje').removeClass('error');
+          $('#mensaje').addClass('success');
         }
         fila.remove();
       }
     });
-    */
   }
 }
