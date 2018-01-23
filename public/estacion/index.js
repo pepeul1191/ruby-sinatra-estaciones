@@ -96,6 +96,13 @@ $(document).on('click', '.fa', function(event) {
       var fila = $(event.currentTarget).parent().parent();
       eliminarEstacion(estacionId, fila);
     break;
+    case 'mostrarMapa':
+      var nombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
+      var latitud = $(event.currentTarget).parent().parent().children().eq(3).children().val();
+      var longitud = $(event.currentTarget).parent().parent().children().eq(4).children().val();
+      var altura = $(event.currentTarget).parent().parent().children().eq(5).children().val();
+      mostrarMapa(nombre, latitud, longitud, altura);
+    break;
   default:
     alert('Operacion ' + operacion + ' no implementada');
   }
@@ -128,6 +135,10 @@ function eliminarEstacion(estacionId, fila){
       }
     });
   }
+}
+
+function mostrarMapa(nombre, latitud, longitud, altura){
+  alert("mostrarMapa");
 }
 
 function editarEstacion(estacion){
