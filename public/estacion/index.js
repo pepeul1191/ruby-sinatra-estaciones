@@ -137,8 +137,18 @@ function eliminarEstacion(estacionId, fila){
   }
 }
 
+
 function mostrarMapa(nombre, latitud, longitud, altura){
   $('#btnModal').click();
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -11.729697, lng: -75.27832},
+    zoom: 2
+  });
+  var marker = new google.maps.Marker({
+    position: {lat: parseFloat(latitud), lng: parseFloat(longitud)},
+    map: map,
+    title: 'Hello World!'
+  });
 }
 
 function editarEstacion(estacion){
