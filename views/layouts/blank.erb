@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="<%=CONSTANTS[:STATIC_URL]%>bower_components/bootstrap/dist/css/bootstrap.min.css" rel='stylesheet'>
   <link href="<%=CONSTANTS[:STATIC_URL]%>bower_components/font-awesome/css/font-awesome.min.css" rel='stylesheet'>
-  <link href="<%=CONSTANTS[:STATIC_URL]%>site.css" rel='stylesheet'>
+  <link href="<%=CONSTANTS[:STATIC_URL]%>assets/styles.css" rel='stylesheet'>
   <%= css(array_css) %>
   <script type="text/javascript">
     var BASE_URL = '<%= CONSTANTS[:BASE_URL] %>';
@@ -19,12 +19,23 @@
   </script>
   <title>Sinatra Template</title>
 </head>
-<body class="conatiner">
-  <h1>Header</h1>
-  <div id='container'>
-    <%= yield %>
+<body>
+  <div>
+    <nav class="navbar navbar-default" role="navigation">
+      <div>
+        <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Gestión de Estaciones</a>
+        </div>
+      </div>
+    </nav>
   </div>
-  <h2>Footer</h2>
+  <%= yield %>
   <script type="text/javascript" src="<%=CONSTANTS[:STATIC_URL]%>bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="<%=CONSTANTS[:STATIC_URL]%>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <%= js(array_js) %>
