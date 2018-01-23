@@ -138,7 +138,7 @@ function eliminarEstacion(estacionId, fila){
 }
 
 function mostrarMapa(nombre, latitud, longitud, altura){
-  alert("mostrarMapa");
+  $('#btnModal').click();
 }
 
 function editarEstacion(estacion){
