@@ -69,10 +69,16 @@ $(document).on('click', '.fa', function(event) {
       var departamentoId = $(event.currentTarget).parent().parent().children().eq(0).html();
       cargarProvincia(departamentoId);
       break;
-    case 'crearDepartamento':
-      var departamentoNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
+    case 'crearEstacion':
+      var estacion = new Object();
+      estacion.nombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
+      estacion.descripcion = $(event.currentTarget).parent().parent().children().eq(2).children().val();
+      estacion.latitud = $(event.currentTarget).parent().parent().children().eq(3).children().val();
+      estacion.longitud = $(event.currentTarget).parent().parent().children().eq(4).children().val();
+      estacion.altura = $(event.currentTarget).parent().parent().children().eq(5).children().val();
+      estacion.tipo_estacion_id = $(event.currentTarget).parent().parent().children().eq(6).children().val();
       var fila = $(event.currentTarget).parent().parent();
-      crearDepartamento(departamentoNombre, fila);
+      crearEstacion(estacion, fila);
       break;
     case 'eliminarEstacion':
       var estacionId = $(event.currentTarget).parent().parent().children().eq(0).html();
@@ -161,4 +167,29 @@ function eliminarEstacion(estacionId, fila){
       }
     });
   }
+}
+
+function crearEstacion(estacion, fila){
+  $.ajax({
+    url: BASE_URL + 'estacion/crear',
+    type: "POST",
+    async: false,
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    data : JSON.stringify(estacion),
+    success: function(data) {
+      var rpta = data;
+      fila.children().eq(0).html(rpta['mensaje'][1]);
+      fila.children().eq(7).empty();
+      fila.children().eq(7).append('<i class="fa fa-map-marker" aria-hidden="true" operacion="mostrarMapa"></i><i class="fa fa-pencil" aria-hidden="true" operacion="editarEstacion"></i><i class="fa fa-times" aria-hidden="true" operacion="eliminarEstacion"></i>');
+      $('#mensaje').html(rpta['mensaje'][0]);
+      if(rpta['tipo_mensaje']=='error'){
+        $('#mensaje').removeClass('success');
+        $('#mensaje').addClass('error');
+      }else{
+        $('#mensaje').removeClass('error');
+        $('#mensaje').addClass('success');
+      }
+    }
+  });
 }
