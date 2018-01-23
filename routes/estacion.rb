@@ -36,6 +36,35 @@ class App < Sinatra::Base
     end
   end
 
+  post '/estacion/editar' do
+    error = false
+    execption = nil
+    nuevo_id = nil
+    DB.transaction do
+      begin
+        data = JSON.parse(request.body.read)
+        e = Estacion.where(:id => data['id']).first
+        e.nombre = data['nombre']
+        e.descripcion = data['descripcion']
+        e.latitud = data['latitud']
+        e.longitud = data['longitud']
+        e.altura = data['altura']
+        e.tipo_estacion_id = data['tipo_estacion_id']
+        e.save
+      rescue Exception => e
+        Sequel::Rollback
+        error = true
+        execption = e
+      end
+    end
+    if error == false
+      return {:tipo_mensaje => 'success', :mensaje => ['Se ha editado una estación']}.to_json
+    else
+      #status 500
+      return {:tipo_mensaje => 'error', :mensaje => ['Se ha producido un error en crear una nueva estación', execption.message]}.to_json
+    end
+  end
+
   post '/estacion/eliminar' do
     error = false
     execption = nil

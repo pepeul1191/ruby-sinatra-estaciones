@@ -80,61 +80,22 @@ $(document).on('click', '.fa', function(event) {
       var fila = $(event.currentTarget).parent().parent();
       crearEstacion(estacion, fila);
       break;
+    case 'editarEstacion':
+        var estacion = new Object();
+        estacion.id = $(event.currentTarget).parent().parent().children().eq(0).html();
+        estacion.nombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
+        estacion.descripcion = $(event.currentTarget).parent().parent().children().eq(2).children().val();
+        estacion.latitud = $(event.currentTarget).parent().parent().children().eq(3).children().val();
+        estacion.longitud = $(event.currentTarget).parent().parent().children().eq(4).children().val();
+        estacion.altura = $(event.currentTarget).parent().parent().children().eq(5).children().val();
+        estacion.tipo_estacion_id = $(event.currentTarget).parent().parent().children().eq(6).children().val();
+        editarEstacion(estacion);
+        break;
     case 'eliminarEstacion':
       var estacionId = $(event.currentTarget).parent().parent().children().eq(0).html();
       var fila = $(event.currentTarget).parent().parent();
       eliminarEstacion(estacionId, fila);
     break;
-    /*
-		case 'editarDepartamento':
-			var departamentoId = $(event.currentTarget).parent().parent().children().eq(0).html();
-	    	var departamentoNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
-	    	editarDepartamento(departamentoId, departamentoNombre);
-			break;
-		//Inicio tabla provincia
-		case 'crearProvincia':
-			var provinciaNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
-	   		var fila = $(event.currentTarget).parent().parent();
-	   		var departamentoId = $('#departamentoId').html();
-	   		crearProvincia(provinciaNombre, departamentoId, fila);
-			break;
-		case 'eliminarProvincia':
-			var provinciaId = $(event.currentTarget).parent().parent().children().eq(0).html();
-	    	var fila = $(event.currentTarget).parent().parent();
-	    	eliminarProvincia(provinciaId, fila);
-			break;
-		case 'editarProvincia':
-			var provinciaId = $(event.currentTarget).parent().parent().children().eq(0).html();
-	    	var provinciaNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
-	    	editarProvincia(provinciaId, provinciaNombre);
-			break;
-		case 'cargarDistrito':
-	   		var distritoId = $(event.currentTarget).parent().parent().children().eq(0).html();
-	   		cargarDistrito(distritoId);
-			break;
-		//Inicio tabla distrito
-		case 'crearDistrito':
-			var distritoNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
-	   		var fila = $(event.currentTarget).parent().parent();
-	   		var provinciaId = $('#provincaiId').html();
-	   		crearDistrito(distritoNombre, provinciaId, fila);
-			break;
-		case 'eliminarDistrito':
-			var distritoId = $(event.currentTarget).parent().parent().children().eq(0).html();
-	    	var fila = $(event.currentTarget).parent().parent();
-	    	eliminarDistrito(distritoId, fila);
-			break;
-		case 'editarDistrito':
-			var distritoId = $(event.currentTarget).parent().parent().children().eq(0).html();
-	    	var distritoNombre = $(event.currentTarget).parent().parent().children().eq(1).children().val();
-	    	editarDistrito(distritoId, distritoNombre);
-			break;
-		//Inicio nuevo
-		case 'eliminarFila':
-			var fila = $(event.currentTarget).parent().parent();
-	    	fila.remove();
-			break;
-    */
   default:
     alert('Operacion ' + operacion + ' no implementada');
   }
@@ -168,6 +129,29 @@ function eliminarEstacion(estacionId, fila){
     });
   }
 }
+
+function editarEstacion(estacion){
+  $.ajax({
+    url: BASE_URL + 'estacion/editar',
+    type: "POST",
+    async: false,
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    data : JSON.stringify(estacion),
+    success: function(data) {
+      var rpta = data;
+      $('#mensaje').html(rpta['mensaje'][0]);
+      if(rpta['tipo_mensaje']=='error'){
+        $('#mensaje').removeClass('success');
+        $('#mensaje').addClass('error');
+      }else{
+        $('#mensaje').removeClass('error');
+        $('#mensaje').addClass('success');
+      }
+    }
+  });
+}
+
 
 function crearEstacion(estacion, fila){
   $.ajax({
